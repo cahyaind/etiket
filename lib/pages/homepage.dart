@@ -1,7 +1,9 @@
 import 'package:etiket/models/ow.dart';
 import 'package:etiket/models/rekomen.dart';
+import 'package:etiket/models/tips.dart';
 import 'package:etiket/widgets/ow_card.dart';
 import 'package:etiket/widgets/rekomen_card.dart';
+import 'package:etiket/widgets/tips_card.dart';
 import 'package:flutter/material.dart';
 import '../theme.dart';
 
@@ -129,6 +131,40 @@ class Homepage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(height: 30),
+                  ],
+                ),
+              ),
+              const SizedBox(height: 30),
+              // TIPS DAN PANDUAN
+              Padding(
+                padding: EdgeInsets.only(left: edge),
+                child: Text(
+                  'Tips & Panduan',
+                  style: regularTextStyle.copyWith(fontSize: 17),
+                ),
+              ),
+              const SizedBox(height: 16),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: edge),
+                child: Column(
+                  children: [
+                    TipsCard(
+                      Tips(
+                        id: 1,
+                        title: 'Pedoman Aplikasi',
+                        imageUrl: 'assets/images/tips1.png',
+                        updatedAt: '07 Juli',
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    TipsCard(
+                      Tips(
+                        id: 2,
+                        title: 'Tentang Majalengka',
+                        imageUrl: 'assets/images/tips2.png',
+                        updatedAt: '04 April',
+                      ),
+                    ),
                   ],
                 ),
               ),

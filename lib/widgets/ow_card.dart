@@ -30,26 +30,28 @@ class OwCard extends StatelessWidget {
                   height: 102,
                   fit: BoxFit.cover,
                 ),
-                ow.isPopular ? Align(
-                  alignment: Alignment.topRight,
-                  child: Container(
-                    width: 40,
-                    height: 30,
-                    decoration: BoxDecoration(
-                      color: blueColor,
-                      borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                      ),
-                    ),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/images/icon_star.png',
-                        width: 17,
-                        height: 17,
-                      ),
-                    ),
-                  ),
-                ) : Container(),
+                ow.isPopular
+                    ? Align(
+                        alignment: Alignment.topRight,
+                        child: Container(
+                          width: 40,
+                          height: 30,
+                          decoration: BoxDecoration(
+                            color: blueColor,
+                            borderRadius: const BorderRadius.only(
+                              bottomLeft: Radius.circular(20),
+                            ),
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                              'assets/images/icon_star.png',
+                              width: 17,
+                              height: 17,
+                            ),
+                          ),
+                        ),
+                      )
+                    : Container(),
               ],
             ),
             SizedBox(height: 11),
