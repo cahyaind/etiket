@@ -2,17 +2,24 @@ import 'package:etiket/widgets/detail_card.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../theme.dart';
+import 'error_page.dart';
 
 class DetailPage extends StatelessWidget {
   DetailPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    const url = 'https://goo.gl/maps/m73uSA6WfyKTpUub8';
+    const url = 'qufywn7q83';
+    // const url = 'https://goo.gl/maps/m73uSA6WfyKTpUub8';
     _launchUrl(String url) async {
       if (await canLaunch(url)) {
         await launch(url);
       } else {
-        throw 'Oops $url';
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ErrorPage(),
+          ),
+        );
       }
     }
 
