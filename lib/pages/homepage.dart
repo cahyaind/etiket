@@ -168,7 +168,7 @@ class Homepage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 50 + edge),
+            SizedBox(height: 70 + edge),
             
           ],
         ),

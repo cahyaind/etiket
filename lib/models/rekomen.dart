@@ -2,7 +2,7 @@ class Rekomen {
   int id;
   String name;
   String imageUrl;
-  double price;
+  int price;
   String village;
   String subdistrict;
   int rating;
