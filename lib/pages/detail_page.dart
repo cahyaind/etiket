@@ -1,12 +1,21 @@
 import 'package:etiket/widgets/detail_card.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../theme.dart';
 
 class DetailPage extends StatelessWidget {
-  const DetailPage({Key? key}) : super(key: key);
-
+  DetailPage({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    const url = 'https://goo.gl/maps/m73uSA6WfyKTpUub8';
+    _launchUrl(String url) async {
+      if (await canLaunch(url)) {
+        await launch(url);
+      } else {
+        throw 'Oops $url';
+      }
+    }
+
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -19,7 +28,6 @@ class DetailPage extends StatelessWidget {
               height: 350,
               fit: BoxFit.cover,
             ),
-            
             ListView(
               children: [
                 SizedBox(height: 328),
@@ -202,9 +210,14 @@ class DetailPage extends StatelessWidget {
                         'Desa Sukasari Kaler, Kecamatan Argapura',
                         style: greyTextStyle,
                       ),
-                      Image.asset(
-                        'assets/buttons/maps.png',
-                        width: 40,
+                      InkWell(
+                        onTap: () {
+                          _launchUrl(url);
+                        },
+                        child: Image.asset(
+                          'assets/buttons/maps.png',
+                          width: 40,
+                        ),
                       ),
                     ],
                   ),
@@ -219,10 +232,9 @@ class DetailPage extends StatelessWidget {
                   child: ElevatedButton(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(17),
-                      )
-                    ),
+                        shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(17),
+                    )),
                     child: Text(
                       'Pesan Tiket',
                       style: whiteTextStyle.copyWith(
