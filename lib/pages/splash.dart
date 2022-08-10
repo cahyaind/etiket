@@ -1,4 +1,4 @@
-import 'package:etiket/pages/homepage.dart';
+import 'package:etiket/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import '../theme.dart';
 
@@ -8,6 +8,7 @@ class Splash extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: whiteColor,
       body: SafeArea(
         bottom: false,
         child: Stack(
