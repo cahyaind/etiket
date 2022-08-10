@@ -1,5 +1,7 @@
 import 'package:etiket/models/ow.dart';
+import 'package:etiket/models/rekomen.dart';
 import 'package:etiket/widgets/ow_card.dart';
+import 'package:etiket/widgets/rekomen_card.dart';
 import 'package:flutter/material.dart';
 import '../theme.dart';
 
@@ -10,6 +12,7 @@ class Homepage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        bottom: false,
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: edge),
           child: ListView(
@@ -76,7 +79,59 @@ class Homepage extends StatelessWidget {
                   ],
                 ),
               ),
+              SizedBox(height: 30),
               // REKOMENDASI WISATA
+              Padding(
+                padding: EdgeInsets.only(left: edge),
+                child: Text(
+                  'Rekomendasi Wisata',
+                  style: regularTextStyle.copyWith(fontSize: 17),
+                ),
+              ),
+              SizedBox(height: 16),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: edge),
+                child: Column(
+                  children: [
+                    RekomenCard(
+                      Rekomen(
+                        id: 1,
+                        name: 'Telaga Biru',
+                        imageUrl: 'assets/images/rekomendasi1.jpg',
+                        price: 15000,
+                        village: 'Padaherang',
+                        subdistrict: 'Sidangwangi',
+                        rating: 4,
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    RekomenCard(
+                      Rekomen(
+                        id: 2,
+                        name: 'Air Terjun Pelangi',
+                        imageUrl: 'assets/images/rekomendasi2.jpg',
+                        price: 25000,
+                        village: 'Sukadana',
+                        subdistrict: 'Argapura',
+                        rating: 5,
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                    RekomenCard(
+                      Rekomen(
+                        id: 3,
+                        name: 'Bukit Kanaga',
+                        imageUrl: 'assets/images/rekomendasi3.jpg',
+                        price: 20000,
+                        village: 'Cipulus',
+                        subdistrict: 'Cikijing',
+                        rating: 4,
+                      ),
+                    ),
+                    SizedBox(height: 30),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
