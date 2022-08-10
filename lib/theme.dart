@@ -7,6 +7,7 @@ Color blackColor = Color(0xff000000);
 Color whiteColor = Color(0xffFFFFFF);
 // Color whiteColor = Colors.white;
 Color greyColor = Color(0xff82868E);
+Color bgColor = Color(0xfff6f7f8);
 
 double edge = 24;
 
