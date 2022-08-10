@@ -8,7 +8,9 @@ Color whiteColor = Color(0xffFFFFFF);
 // Color whiteColor = Colors.white;
 Color greyColor = Color(0xff82868E);
 
-// for TextStyle, w500=tipe medium text, w300=light
+double edge = 24;
+
+// for TextStyle, w500=tipe medium text, w300=light, w400=normal/regular
 TextStyle blackTextStyle = GoogleFonts.poppins(
   fontWeight: FontWeight.w500,
   color: blackColor,
@@ -24,4 +26,8 @@ TextStyle greyTextStyle = GoogleFonts.poppins(
 TextStyle greenTextStyle = GoogleFonts.poppins(
   fontWeight: FontWeight.w500,
   color: greenColor,
+);
+TextStyle regularTextStyle = GoogleFonts.poppins(
+  fontWeight: FontWeight.w400,
+  color: blackColor,
 );

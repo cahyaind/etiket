@@ -1,10 +1,11 @@
+import 'package:etiket/pages/homepage.dart';
 import 'package:flutter/material.dart';
 import '../theme.dart';
 
 class Splash extends StatelessWidget {
   const Splash({Key? key}) : super(key: key);
 
- @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -24,7 +25,9 @@ class Splash extends StatelessWidget {
                     height: 250,
                     width: 250,
                     decoration: const BoxDecoration(
-                      image: DecorationImage(image: AssetImage('assets/images/etiket.png'),),
+                      image: DecorationImage(
+                        image: AssetImage('assets/images/etiket.png'),
+                      ),
                     ),
                   ),
                   const SizedBox(height: 90),
@@ -42,7 +45,14 @@ class Splash extends StatelessWidget {
                     width: 210,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Homepage(),
+                          ),
+                        );
+                      },
                       style: ElevatedButton.styleFrom(
                           primary: blueColor,
                           shape: RoundedRectangleBorder(
