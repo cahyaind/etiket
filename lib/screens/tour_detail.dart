@@ -1,36 +1,22 @@
-import 'package:etiket/widgets/detail_card.dart';
+import 'package:etiket/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
-import '../theme.dart';
-import 'error_page.dart';
 
-class DetailPage extends StatelessWidget {
-  const DetailPage({Key? key}) : super(key: key);
+class TourDetail extends StatelessWidget {
+  // const TourDetail({Key? key}) : super(key: key);
+
+  // constuctor
+  final Map tour;
+  TourDetail({required this.tour});
+
   @override
   Widget build(BuildContext context) {
-    const url = 'qufywn7q83';
-    // const url = 'https://goo.gl/maps/m73uSA6WfyKTpUub8';
-    _launchUrl(String url) async {
-      if (await canLaunch(url)) {
-        await launch(url);
-      } else {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ErrorPage(),
-          ),
-        );
-      }
-    }
-
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
-        bottom: false,
         child: Stack(
           children: [
-            Image.asset(
-              'assets/images/rekomendasi2.jpg',
+            Image.network(
+              tour['image_url'],
               width: MediaQuery.of(context).size.width,
               height: 350,
               fit: BoxFit.cover,
@@ -61,55 +47,30 @@ class DetailPage extends StatelessWidget {
                                   CrossAxisAlignment.start, // rata kiri
                               children: [
                                 Text(
-                                  'Air Terjun Pelangi',
+                                  tour['name'],
                                   style: blackTextStyle.copyWith(
                                     fontSize: 22,
-                                  ),
+                                ),
                                 ),
                                 SizedBox(height: 2),
-                                Text.rich(
-                                  TextSpan(
-                                    text: 'Rp20000',
-                                    style:
-                                        greenTextStyle.copyWith(fontSize: 16),
-                                    children: [
-                                      TextSpan(
-                                        text: ' / orang',
-                                        style: greyTextStyle.copyWith(
-                                          fontSize: 16,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Image.asset(
-                                  'assets/icons/star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(width: 2),
-                                Image.asset(
-                                  'assets/icons/star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(width: 2),
-                                Image.asset(
-                                  'assets/icons/star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(width: 2),
-                                Image.asset(
-                                  'assets/icons/star.png',
-                                  width: 20,
-                                ),
-                                SizedBox(width: 2),
-                                Image.asset(
-                                  'assets/icons/star.png',
-                                  width: 20,
-                                  color: Color(0xff989ba1),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Rp',
+                                      style:
+                                          blueTextStyle.copyWith(fontSize: 16),
+                                    ),
+                                    Text(
+                                      tour['price'],
+                                      style:
+                                          blueTextStyle.copyWith(fontSize: 16),
+                                    ),
+                                    Text(
+                                      '/ orang',
+                                      style:
+                                          blueTextStyle.copyWith(fontSize: 16),
+                                    ),
+                                  ],
                                 ),
                               ],
                             ),
@@ -134,9 +95,8 @@ class DetailPage extends StatelessWidget {
                         ),
                         child: Wrap(
                           children: [
-                            DetailCard(
-                              ket:
-                                  'Berjarak kurang lebih 16 kilometer dari pusat kota Majalengka, dengan estimasi waktu tempuh 30 menit. Air terjun yang diapit oleh dua dinding batu yang mirip dengan lava itu menyajikan kesegaran yang berbeda dari air terjun yang lainnya.',
+                            Text(
+                              tour['description'],
                             ),
                           ],
                         ),
@@ -196,7 +156,7 @@ class DetailPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 // LOKASI WISATA
                 Padding(
                   padding: EdgeInsets.only(left: edge),
@@ -207,29 +167,24 @@ class DetailPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 6),
+                const SizedBox(height: 6),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: edge),
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        'Desa Sukasari Kaler, Kecamatan Argapura',
+                        tour['village'],
                         style: greyTextStyle,
                       ),
-                      InkWell(
-                        onTap: () {
-                          _launchUrl(url);
-                        },
-                        child: Image.asset(
-                          'assets/buttons/maps.png',
-                          width: 40,
-                        ),
+                      Text(", ", style: greyTextStyle),
+                      Text(
+                        tour['subdistrict'],
+                        style: greyTextStyle,
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 40),
+                const SizedBox(height: 40),
                 Container(
                   margin: EdgeInsets.symmetric(
                     horizontal: edge,
@@ -252,31 +207,6 @@ class DetailPage extends StatelessWidget {
                 ),
                 SizedBox(height: 40),
               ],
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: edge,
-                vertical: 30,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                      // navigator untuk kembali ke halaman sebelumnya
-                    },
-                    child: Image.asset(
-                      'assets/buttons/back.png',
-                      width: 40,
-                    ),
-                  ),
-                  Image.asset(
-                    'assets/buttons/love.png',
-                    width: 40,
-                  ),
-                ],
-              ),
             ),
           ],
         ),

@@ -8,6 +8,7 @@ Color whiteColor = Color(0xffFFFFFF);
 // Color whiteColor = Colors.white;
 Color greyColor = Color(0xff82868E);
 Color bgColor = Color(0xfff6f7f8);
+Color blueGreyColor = Color(0xff607D8B);
 
 double edge = 24;
 
@@ -31,4 +32,8 @@ TextStyle greenTextStyle = GoogleFonts.poppins(
 TextStyle regularTextStyle = GoogleFonts.poppins(
   fontWeight: FontWeight.w400,
   color: blackColor,
+);
+TextStyle blueTextStyle = GoogleFonts.poppins(
+  fontWeight: FontWeight.w500,
+  color: blueColor,
 );

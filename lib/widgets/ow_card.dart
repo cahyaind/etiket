@@ -44,7 +44,7 @@ class OwCard extends StatelessWidget {
                           ),
                           child: Center(
                             child: Image.asset(
-                              'assets/images/icon_star.png',
+                              'assets/icons/star.png',
                               width: 17,
                               height: 17,
                             ),

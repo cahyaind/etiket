@@ -1,15 +1,26 @@
 import 'package:etiket/models/ow.dart';
 import 'package:etiket/models/rekomen.dart';
 import 'package:etiket/models/tips.dart';
+import 'package:etiket/providers/rekomen_provider.dart';
+import 'package:etiket/screens/tour_detail.dart';
+import 'package:etiket/screens/tour_list.dart';
+import 'package:etiket/theme.dart';
 import 'package:etiket/widgets/bottom_navbar.dart';
 import 'package:etiket/widgets/ow_card.dart';
 import 'package:etiket/widgets/rekomen_card.dart';
 import 'package:etiket/widgets/tips_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../theme.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 import '../theme.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +39,7 @@ class Homepage extends StatelessWidget {
                 style: blackTextStyle.copyWith(fontSize: 24),
               ),
             ),
-            SizedBox(height: 2),
+            const SizedBox(height: 2),
             Padding(
               padding: EdgeInsets.only(left: edge),
               child: Text(
@@ -36,7 +47,7 @@ class Homepage extends StatelessWidget {
                 style: greyTextStyle.copyWith(fontSize: 16),
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             // WISATA TERPOPULER
             Padding(
               padding: EdgeInsets.only(left: edge),
@@ -45,13 +56,13 @@ class Homepage extends StatelessWidget {
                 style: regularTextStyle.copyWith(fontSize: 17),
               ),
             ),
-            SizedBox(height: 5),
+            const SizedBox(height: 5),
             Container(
               height: 150,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  SizedBox(width: 24),
+                  const SizedBox(width: 24),
                   OwCard(
                     Ow(
                       id: 1,
@@ -60,7 +71,7 @@ class Homepage extends StatelessWidget {
                       isPopular: false,
                     ),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   OwCard(
                     Ow(
                       id: 2,
@@ -69,7 +80,7 @@ class Homepage extends StatelessWidget {
                       isPopular: true,
                     ),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   OwCard(
                     Ow(
                       id: 3,
@@ -78,11 +89,11 @@ class Homepage extends StatelessWidget {
                       isPopular: false,
                     ),
                   ),
-                  SizedBox(width: 24),
+                  const SizedBox(width: 24),
                 ],
               ),
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             // REKOMENDASI WISATA
             Padding(
               padding: EdgeInsets.only(left: edge),
@@ -91,50 +102,9 @@ class Homepage extends StatelessWidget {
                 style: regularTextStyle.copyWith(fontSize: 17),
               ),
             ),
-            SizedBox(height: 16),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: edge),
-              child: Column(
-                children: [
-                  RekomenCard(
-                    Rekomen(
-                      id: 1,
-                      name: 'Telaga Biru',
-                      imageUrl: 'assets/images/rekomendasi1.jpg',
-                      price: 15000,
-                      village: 'Padaherang',
-                      subdistrict: 'Sidangwangi',
-                      rating: 4,
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  RekomenCard(
-                    Rekomen(
-                      id: 2,
-                      name: 'Air Terjun Pelangi',
-                      imageUrl: 'assets/images/rekomendasi2.jpg',
-                      price: 25000,
-                      village: 'Sukadana',
-                      subdistrict: 'Argapura',
-                      rating: 5,
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                  RekomenCard(
-                    Rekomen(
-                      id: 3,
-                      name: 'Bukit Kanaga',
-                      imageUrl: 'assets/images/rekomendasi3.jpg',
-                      price: 20000,
-                      village: 'Cipulus',
-                      subdistrict: 'Cikijing',
-                      rating: 4,
-                    ),
-                  ),
-                  SizedBox(height: 30),
-                ],
-              ),
-            ),
+            const SizedBox(height: 16),
+            // LIST WISATA DI REKOMENDASI WISATA
+            const TourList(),
             const SizedBox(height: 30),
             // TIPS DAN PANDUAN
             Padding(
@@ -170,42 +140,41 @@ class Homepage extends StatelessWidget {
               ),
             ),
             SizedBox(height: 70 + edge),
-            
           ],
         ),
       ),
       floatingActionButton: Container(
-                height: 65,
-                width: MediaQuery.of(context).size.width - (2 * edge),
-                margin: EdgeInsets.symmetric(
-                  horizontal: edge,
-                ),
-                decoration: BoxDecoration(
-                  color: bgColor,
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    BottomNavbar(
-                      imageUrl: 'assets/icons/home.png',
-                      isActive: true,
-                    ),
-                    BottomNavbar(
-                      imageUrl: 'assets/icons/email.png',
-                      isActive: false,
-                    ),
-                    BottomNavbar(
-                      imageUrl: 'assets/icons/card.png',
-                      isActive: false,
-                    ),
-                    BottomNavbar(
-                      imageUrl: 'assets/icons/favorite.png',
-                      isActive: false,
-                    ),
-                  ],
-                ),
-              ),
-              floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+        height: 65,
+        width: MediaQuery.of(context).size.width - (2 * edge),
+        margin: EdgeInsets.symmetric(
+          horizontal: edge,
+        ),
+        decoration: BoxDecoration(
+          color: bgColor,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            BottomNavbar(
+              imageUrl: 'assets/icons/home.png',
+              isActive: true,
+            ),
+            BottomNavbar(
+              imageUrl: 'assets/icons/email.png',
+              isActive: false,
+            ),
+            BottomNavbar(
+              imageUrl: 'assets/icons/card.png',
+              isActive: false,
+            ),
+            BottomNavbar(
+              imageUrl: 'assets/icons/favorite.png',
+              isActive: false,
+            ),
+          ],
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }
